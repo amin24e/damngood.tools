@@ -24,20 +24,45 @@ Follow these steps to install the project:
        - Create a database in the Upstash console.
        - Once the database is created, go to REST API and obtain the `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`.
      - Finally, set the [`GPT4ALL_MODEL`](https://gpt4all.io/index.html) environment variable to `gpt4all-13b-snoozy` from the provided source.
+5.Compile TypeScript: Run npx tsc to compile the TypeScript files into JavaScript. This command will use the settings specified in tsconfig.json. You may need to install TypeScript globally on your machine using npm install -g typescript if it's not already installed
 
-5. **Build the Project**: Execute the build command for the project. The specific command may vary depending on the project's setup. For a typical Next.js project, run `npm run build` in the terminal. This command will build your project, preparing it for a production environment.
+6. **Build the Project**: Execute the build command for the project. The specific command may vary depending on the project's setup. For a typical Next.js project, run `npm run build` in the terminal. This command will build your project, preparing it for a production environment.
 
 6. **Start the Server**: After the project is built, start the server using the command `npm run start` in the terminal. This command will launch your Next.js application. Open your web browser and navigate to `localhost:3000` (or the specified port) to access your application.
 
+**Note: I encountered two errors when installing this on my server:**
 
-note : i have run to 2 errors 
-  1. 
-  2.  when running "npm run build " > 
-  3.  The error message is telling you that there's an issue with your next.config.mjs file.
+1. **Error when Compiling TypeScript with 'npx tsc' (from the root directory)**:
+   - Error message: `error TS2307: Cannot find module '@/types/nav' or its corresponding type declarations.`
+   - Solution: To fix this error, add `@/types/*` in the `tsconfig.json` file under the `"paths"` section:
+     ```json
+     "paths": {
+         "@/*": ["src/*"],
+         "@/types/*": ["types/*"]
+     }
+     ```
 
-In particular, it's saying "require is not defined in ES module scope, you can use import instead". This means that you're using require in your next.config.mjs file, which is an ES module. require is a feature of CommonJS modules, not ES modules. In ES modules, you should use import instead.
+2. **Error when running `npm run build`**:
+   - Error message: 
+     ```
+     > next-template@0.0.2 build
+     > next build
+     
+     info  - Loaded env from /root/damngood.tools/.env
+     error - Failed to load next.config.mjs, see more info here https://nextjs.org/docs/messages/next-config-error
+     
+     > Build error occurred
+     ReferenceError: require is not defined in ES module scope, you can use import instead
+         at file:///root/damngood.tools/next.config.mjs:2:14
+         ...
+     ```
+   - Solution: The error message indicates an issue with the `next.config.mjs` file. It specifically mentions that the use of `require` is not valid in an ES module. You need to update the `next.config.mjs` file and replace any `require` statements with `import` statements.
 
-You will need to update your next.config.mjs file and replace any require statements with import.
+   - Update your `next.config.mjs` file, replacing any `require` statements with `import` statements according to the ES module syntax.
+
+Make sure to apply these changes to resolve the errors you encountered during installation.
+
+
 
 
 # Original read me 
