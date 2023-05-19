@@ -60,7 +60,7 @@ Follow these steps to install the project:
 
    - Update your `next.config.mjs` file, replacing any `require` statements with `import` statements according to the ES module syntax.
 
-Make sure to apply these changes to resolve the errors you encountered during installation.
+Make sure to apply these changes to resolve the errors you encountered during installation. (already done for this repo)
 
 
 
