@@ -23,7 +23,7 @@ Follow these steps to install the project:
      - For Upstash Redis, perform the following:
        - Create a database in the Upstash console.
        - Once the database is created, go to REST API and obtain the `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`.
-     - Finally, set the `GPT4ALL_MODEL` environment variable to `gpt4all-13b-snoozy` from the provided source.
+     - Finally, set the [`GPT4ALL_MODEL`](https://gpt4all.io/index.html) environment variable to `gpt4all-13b-snoozy` from the provided source.
 
 5. **Build the Project**: Execute the build command for the project. The specific command may vary depending on the project's setup. For a typical Next.js project, run `npm run build` in the terminal. This command will build your project, preparing it for a production environment.
 
